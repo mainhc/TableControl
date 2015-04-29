@@ -3,8 +3,11 @@
 #include"../HelpFunc.h"
 #include"../zlib/zlib.h"
 #include"../tinyxml2/tinyxml2.h"
+#include"../protobuf/addressbook.pb.h"
 
 #pragma comment(lib,"zlibwapi.lib")
+#pragma comment(lib,"libprotobuf.lib")
+#pragma comment(lib,"libprotoc.lib")
 
 
 int main()
@@ -26,7 +29,7 @@ int main()
 	memset(pMem, 0, isize + 1);
 	LoadFileToMemory(fp, (char*)pMem, isize);
 	Byte atemp[1024 * 10] = { 0 };
-	uLong itemp = 0;
+	uLong itemp = sizeof(atemp);
 	uLong iLen = sizeof(pMem);
 
 	int errtemp = compress(atemp, &itemp, (const Bytef*)pMem, isize + 1);
@@ -68,6 +71,17 @@ int main()
 	doc.LoadFile("../resources/test7.xml");
 
 	printf("loadfile erroe Id is %d ", doc.ErrorID());
+
+	tutorial::Person temp;
+	tutorial::Person_PhoneNumber tempnum;
+	tempnum.set_number("1389765746");
+	temp.set_email("wwww.com");
+
+	//::google::protobuf::io::CodedOutputStream ptemp;
+	std::string tempstr;
+	//temp.AppendToString(&tempstr);
+
+	//printf("Person_PhoneNumber  %s ", tempstr.c_str());
 
 
 	system("pause");
