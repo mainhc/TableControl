@@ -9,7 +9,7 @@
 #include <iostream>
 #include <unistd.h>
 #include "../../tinyxml2/tinyxml2.h"
-#include "../HelpFunc.h"
+#include "../../HelpFunc.h"
 #include "../../zlib/zlib.h"
 
 
@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
     memset(pMem, 0, isize+1);
     LoadFileToMemory(fp,(char*)pMem,isize);
     Byte atemp[1024*10]={0};
-    uLong itemp=0;
+    uLong itemp=sizeof(atemp);
     uLong iLen = sizeof(pMem);
     
     int errtemp = compress(atemp, &itemp, (const Bytef*)pMem, isize+1);
