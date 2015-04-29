@@ -14,23 +14,32 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="zlib">
-      <UniqueIdentifier>{6d2e65b0-60c5-4305-8c8b-dc7961386701}</UniqueIdentifier>
+      <UniqueIdentifier>{6e85372e-f6b9-4c5c-a952-7c7635c5a956}</UniqueIdentifier>
     </Filter>
     <Filter Include="tinyxml2">
-      <UniqueIdentifier>{1b9872a5-51e7-402d-ad2d-d6808bb1b99e}</UniqueIdentifier>
+      <UniqueIdentifier>{95626d63-00de-4b5a-b7f6-16449a724757}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\zlib\zlib.h">
+    <ClInclude Include="..\zlib\zconf.h">
       <Filter>zlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\tinyxml2\tinyxml2.h">
+    <ClInclude Include="..\zlib\zlib.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tinyxml2\tinyxml2.h">
       <Filter>tinyxml2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelpFunc.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\tinyxml2\tinyxml2.cpp">
+    <ClCompile Include="..\tinyxml2\tinyxml2.cpp">
       <Filter>tinyxml2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelpFunc.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="WinMain.cpp">
       <Filter>源文件</Filter>

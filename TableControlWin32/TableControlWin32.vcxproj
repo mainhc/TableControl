@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F8B25805-F7CC-4832-8860-6A24DA554F2F}</ProjectGuid>
+    <ProjectGuid>{06EC8CA8-81C8-4A6A-A6B6-F775F46D9F77}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TableControlWin32</RootNamespace>
   </PropertyGroup>
@@ -41,6 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>F:\TableControl\zlib;$(LibraryPath)</LibraryPath>
+    <OutDir>bin</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -51,7 +53,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;ZLIB_WINAPI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -78,11 +80,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\tinyxml2\tinyxml2.h" />
-    <ClInclude Include="..\..\zlib\zlib.h" />
+    <ClInclude Include="..\HelpFunc.h" />
+    <ClInclude Include="..\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="..\zlib\zconf.h" />
+    <ClInclude Include="..\zlib\zlib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="..\HelpFunc.cpp" />
+    <ClCompile Include="..\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
