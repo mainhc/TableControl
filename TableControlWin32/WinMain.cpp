@@ -75,13 +75,22 @@ int main()
 	tutorial::Person temp;
 	tutorial::Person_PhoneNumber tempnum;
 	tempnum.set_number("1389765746");
-	temp.set_email("wwww.com");
 
-	//::google::protobuf::io::CodedOutputStream ptemp;
+	tutorial::Person_PhoneNumber* pPhone = temp.add_phone();
+	pPhone->set_number("1387667889");
+	temp.set_email("wwww.com");	
+	temp.set_id(342342);
+	temp.set_name("hahha");
+
 	std::string tempstr;
+
+	temp.SerializeToString(&tempstr);
+
+	
+
 	//temp.AppendToString(&tempstr);
 
-	//printf("Person_PhoneNumber  %s ", tempstr.c_str());
+	printf("Person_PhoneNumber  %s ", tempstr.c_str());
 
 
 	system("pause");
