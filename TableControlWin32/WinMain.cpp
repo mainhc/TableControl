@@ -1,7 +1,10 @@
+
+#include "stdafx.h"
 #include<iostream>
 #include<stdio.h>
 #include"../HelpFunc.h"
 #include"../zlib/zlib.h"
+#include"../zlib/Unzipper.h"
 #include"../tinyxml2/tinyxml2.h"
 #include"../protobuf/addressbook.pb.h"
 
@@ -91,6 +94,14 @@ int main()
 	//temp.AppendToString(&tempstr);
 
 	printf("Person_PhoneNumber  %s ", tempstr.c_str());
+
+	//
+	CUnzipper unZib;
+
+	unZib.OpenZip("../resources/testtable.xlsx");
+
+	printf("testtable.xlsx has file count %d ", unZib.GetFileCount());
+
 
 
 	system("pause");
