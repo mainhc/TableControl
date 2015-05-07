@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
 #include<iostream>
+#include<string>
 #include<stdio.h>
 #include"../HelpFunc.h"
 #include"../zlib/zlib.h"
@@ -11,6 +12,8 @@
 #pragma comment(lib,"zlibwapi.lib")
 #pragma comment(lib,"libprotobuf.lib")
 #pragma comment(lib,"libprotoc.lib")
+
+const std::string cstrComment1 = "xl/sharedStrings.xml";
 
 
 int main()
@@ -102,8 +105,16 @@ int main()
 
 	printf("testtable.xlsx has file count %d ", unZib.GetFileCount());
 
-
-
+	if (unZib.GotoFile(cstrComment1.c_str()))
+	{		
+		UZ_FileInfo kTempInfo;	
+		unZib.GetFileInfo(kTempInfo);
+		char * pBuffer = new char[kTempInfo.dwUncompressedSize+1];
+		memset(pBuffer, 0, kTempInfo.dwUncompressedSize + 1);
+		unZib.UnzipToBuffer(pBuffer, kTempInfo.dwUncompressedSize + 1);
+		printf("xl/sharedStrings.xml is %s  ", pBuffer);
+		printf("testtable.xlsx has file success ! ");
+	}
 	system("pause");
 	return 0;
 }

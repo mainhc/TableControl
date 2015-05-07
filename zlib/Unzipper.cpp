@@ -268,6 +268,35 @@ bool CUnzipper::GetFileInfo(UZ_FileInfo& info)
 	return TRUE;
 }
 
+//将文件解压到内存中
+bool CUnzipper::UnzipToBuffer(char * pBuffer, int size)
+{
+	if (!m_uzFile)
+		return FALSE;
+	if (unzOpenCurrentFile(m_uzFile) != UNZ_OK)
+		return FALSE;
+	int nRet = UNZ_OK;
+	char pBuffertemp[BUFFERSIZE] = {0};
+	int nWrite = 0;
+	do
+	{
+		nRet = unzReadCurrentFile(m_uzFile, pBuffertemp, BUFFERSIZE);
+		if (nRet > 0)
+		{
+			// output
+			DWORD dwBytesWritten = 0;
+			memcpy(pBuffer+nWrite, pBuffertemp, nRet);
+			nWrite += nRet;
+		}
+	} while (nRet > 0);
+	unzCloseCurrentFile(m_uzFile);
+	if (nWrite > size)
+	{
+		return false;
+	}
+	return true;
+}
+
 bool CUnzipper::UnzipFile(LPCTSTR szFolder, bool bIgnoreFilePath)
 {
 	if (!m_uzFile)

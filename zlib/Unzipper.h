@@ -78,6 +78,7 @@ public:
 	// helpers
 	bool GotoFile(LPCTSTR szFileName, bool bIgnoreFilePath = TRUE);
 	bool GotoFile(int nFile);
+	bool UnzipToBuffer(char * pBuffer, int size);
 	
 protected:
 	void* m_uzFile;
