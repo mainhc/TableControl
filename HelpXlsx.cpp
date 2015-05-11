@@ -1,7 +1,12 @@
 #include"HelpXlsx.h"
-#include"zlib/Unzipper.h"
+
 #include"protobuf/protobufhead.h"
-#include"tinyxml2\tinyxml2.h"
+#include"tinyxml2/tinyxml2.h"
+
+#if defined(_WIN32) && defined(_WINDOWS)
+
+#include"zlib/Unzipper.h"
+#endif
 
 
 cHelpXlsx::cHelpXlsx()
@@ -30,6 +35,8 @@ void cHelpXlsx::Release()
 	}
 }
 
+#if defined(_WIN32) && defined(_WINDOWS)
+
 bool cHelpXlsx::LoadXlsx(const char* cpFileName)
 {
 	CUnzipper unZib;
@@ -48,6 +55,8 @@ bool cHelpXlsx::LoadXlsx(const char* cpFileName)
 	}	
 	return true;
 }
+#endif
+
 
 const char * cHelpXlsx::GetXlsxDataBuffer(eXlsxData eDatatype)
 {
@@ -57,6 +66,8 @@ const char * cHelpXlsx::GetXlsxDataBuffer(eXlsxData eDatatype)
 	}
 	return m_apXlsxData[eDatatype];
 }
+
+
 
 bool cHelpXlsx::SavePBData()
 {
