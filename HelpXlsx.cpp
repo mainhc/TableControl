@@ -1,6 +1,7 @@
 #include"HelpXlsx.h"
 #include"zlib/Unzipper.h"
 #include"protobuf/protobufhead.h"
+#include"tinyxml2\tinyxml2.h"
 
 
 cHelpXlsx::cHelpXlsx()
@@ -48,10 +49,37 @@ bool cHelpXlsx::LoadXlsx(const char* cpFileName)
 	return true;
 }
 
+const char * cHelpXlsx::GetXlsxDataBuffer(eXlsxData eDatatype)
+{
+	if (eDatatype <= eXlsxDataNull || eDatatype >= eXlsxDataNum)
+	{
+		return NULL;
+	}
+	return m_apXlsxData[eDatatype];
+}
+
 bool cHelpXlsx::SavePBData()
 {
 	int iRow = 0;
 	int iCol = 0;
+
+	tinyxml2::XMLDocument pkXmlDoc;
+	tinyxml2::XMLError eRes = pkXmlDoc.Parse(m_apXlsxData[eXlsxSheet1]);
+	if (eRes != tinyxml2::XML_NO_ERROR)
+	{
+		return false;
+	}
+	tinyxml2::XMLElement* pkElework = pkXmlDoc.FirstChildElement("worksheet");
+	if (pkElework == NULL)
+	{
+		return false;
+	}
+	tinyxml2::XMLElement* pkDi = pkElework->FirstChildElement("dimension");
+	if (pkDi == NULL)
+	{
+		return false;
+	}
+
 
 	return true;
 }

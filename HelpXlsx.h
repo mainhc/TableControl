@@ -28,6 +28,7 @@ public:
 
 	bool LoadXlsx(const char* cpFileName);
 	bool SavePBData();
+	const char * GetXlsxDataBuffer(eXlsxData eDatatype);
 private:
 	char *				m_apXlsxData[eXlsxDataNum];
 
