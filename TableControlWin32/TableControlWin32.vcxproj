@@ -20,7 +20,8 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -41,20 +42,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>F:\TableControl\zlib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>F:\TableControl\zlib;E:\TableControl\google;$(LibraryPath)</LibraryPath>
     <OutDir>bin</OutDir>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;ZLIB_WINAPI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>E:\TableControl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -81,14 +85,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\HelpFunc.h" />
+    <ClInclude Include="..\HelpXlsx.h" />
+    <ClInclude Include="..\protobuf\protobufhead.h" />
+    <ClInclude Include="..\protobuf\testtable.pb.h" />
     <ClInclude Include="..\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="..\zlib\FILEMISC.H" />
+    <ClInclude Include="..\zlib\ioapi.h" />
+    <ClInclude Include="..\zlib\iowin32.h" />
+    <ClInclude Include="..\zlib\unzip.h" />
+    <ClInclude Include="..\zlib\Unzipper.h" />
     <ClInclude Include="..\zlib\zconf.h" />
+    <ClInclude Include="..\zlib\zip.h" />
+    <ClInclude Include="..\zlib\Zipper.h" />
     <ClInclude Include="..\zlib\zlib.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\HelpFunc.cpp" />
+    <ClCompile Include="..\HelpXlsx.cpp" />
+    <ClCompile Include="..\protobuf\testtable.pb.cc" />
     <ClCompile Include="..\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="..\zlib\FILEMISC.CPP" />
+    <ClCompile Include="..\zlib\Unzipper.cpp" />
+    <ClCompile Include="..\zlib\Zipper.cpp" />
     <ClCompile Include="WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\protobuf\testtable.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

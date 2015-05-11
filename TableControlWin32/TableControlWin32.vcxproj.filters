@@ -19,6 +19,12 @@
     <Filter Include="tinyxml2">
       <UniqueIdentifier>{95626d63-00de-4b5a-b7f6-16449a724757}</UniqueIdentifier>
     </Filter>
+    <Filter Include="protobuf">
+      <UniqueIdentifier>{d13a5657-8271-4df4-bbeb-c07bb9e6863b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="google">
+      <UniqueIdentifier>{122200e1-4213-4f41-bfe4-23a3967a9a06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\zlib\zconf.h">
@@ -33,6 +39,39 @@
     <ClInclude Include="..\HelpFunc.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\zlib\Unzipper.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\Zipper.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\ioapi.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\iowin32.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\unzip.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\zip.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zlib\FILEMISC.H">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protobuf\testtable.pb.h">
+      <Filter>protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelpXlsx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protobuf\protobufhead.h">
+      <Filter>protobuf</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\tinyxml2\tinyxml2.cpp">
@@ -44,5 +83,25 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\zlib\Unzipper.cpp">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\Zipper.cpp">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zlib\FILEMISC.CPP">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protobuf\testtable.pb.cc">
+      <Filter>protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelpXlsx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\protobuf\testtable.proto">
+      <Filter>protobuf</Filter>
+    </None>
   </ItemGroup>
 </Project>
