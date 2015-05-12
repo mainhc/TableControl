@@ -4,14 +4,17 @@
 #include<string>
 #include<stdio.h>
 #include"../HelpFunc.h"
+#include"../HelpXlsx.h"
 #include"../zlib/zlib.h"
 #include"../zlib/Unzipper.h"
 #include"../tinyxml2/tinyxml2.h"
-#include"../protobuf/addressbook.pb.h"
+
+
 
 #pragma comment(lib,"zlibwapi.lib")
 #pragma comment(lib,"libprotobuf.lib")
 #pragma comment(lib,"libprotoc.lib")
+
 
 const std::string cstrComment1 = "xl/sharedStrings.xml";
 
@@ -78,25 +81,29 @@ int main()
 
 	printf("loadfile erroe Id is %d ", doc.ErrorID());
 
-	tutorial::Person temp;
-	tutorial::Person_PhoneNumber tempnum;
-	tempnum.set_number("1389765746");
+	//tutorial::Person temp;
+	//tutorial::Person_PhoneNumber tempnum;
+	//tempnum.set_number("1389765746");
 
-	tutorial::Person_PhoneNumber* pPhone = temp.add_phone();
-	pPhone->set_number("1387667889");
-	temp.set_email("wwww.com");	
-	temp.set_id(342342);
-	temp.set_name("hahha");
+	//tutorial::Person_PhoneNumber* pPhone = temp.add_phone();
+	//pPhone->set_number("1387667889");
+	//temp.set_email("wwww.com");	
+	//temp.set_id(342342);
+	//temp.set_name("hahha");
 
-	std::string tempstr;
+	//std::string tempstr;
 
-	temp.SerializeToString(&tempstr);
+	//temp.SerializeToString(&tempstr);
 
-	
+	//
 
-	//temp.AppendToString(&tempstr);
+	////temp.AppendToString(&tempstr);
 
-	printf("Person_PhoneNumber  %s ", tempstr.c_str());
+	//printf("Person_PhoneNumber  %s ", tempstr.c_str());
+
+	cHelpXlsx ioXlsx;
+	ioXlsx.LoadXlsx("../resources/testtable.xlsx");
+	ioXlsx.SavePBData();
 
 	//
 	CUnzipper unZib;

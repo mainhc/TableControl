@@ -10,6 +10,8 @@ cHelpXlsx::cHelpXlsx()
 	{
 		m_apXlsxData[iLoop] = NULL;
 	}
+	m_iRow = 0;
+	m_iCol = 0;
 }
 
 cHelpXlsx::~cHelpXlsx()
@@ -46,23 +48,13 @@ bool cHelpXlsx::LoadXlsx(const char* cpFileName)
 			unZib.UnzipToBuffer(m_apXlsxData[iLoop], kTempInfo.dwUncompressedSize + 1);
 		}
 	}	
+	LoadColRowData();
 	return true;
 }
 
-const char * cHelpXlsx::GetXlsxDataBuffer(eXlsxData eDatatype)
+//填充行列数据
+bool cHelpXlsx::LoadColRowData()
 {
-	if (eDatatype <= eXlsxDataNull || eDatatype >= eXlsxDataNum)
-	{
-		return NULL;
-	}
-	return m_apXlsxData[eDatatype];
-}
-
-bool cHelpXlsx::SavePBData()
-{
-	int iRow = 0;
-	int iCol = 0;
-
 	tinyxml2::XMLDocument pkXmlDoc;
 	tinyxml2::XMLError eRes = pkXmlDoc.Parse(m_apXlsxData[eXlsxSheet1]);
 	if (eRes != tinyxml2::XML_NO_ERROR)
@@ -79,6 +71,54 @@ bool cHelpXlsx::SavePBData()
 	{
 		return false;
 	}
+	std::string strCloRow = pkDi->Attribute("ref");
+	char * pStr = (char *)strCloRow.c_str();
+
+	char *pDes = std::strstr(pStr, ":");
+	if (pDes == NULL)
+	{
+		return false;
+	}
+	pDes++;
+	ParserColRowData(pDes, m_iRow, m_iCol);
+	return true;
+}
+
+const char * cHelpXlsx::GetXlsxDataBuffer(eXlsxData eDatatype)
+{
+	if (eDatatype <= eXlsxDataNull || eDatatype >= eXlsxDataNum)
+	{
+		return NULL;
+	}
+	return m_apXlsxData[eDatatype];
+}
+
+//得到表格的有效数据
+void cHelpXlsx::ParserColRowData(char* pData, int& iRow, int & iCol)
+{
+	iRow = 0;
+	iCol = 0;
+	while (*pData && *pData >= 'A' && *pData <= 'Z')
+	{
+		iCol *= ('Z' - 'A' + 1);
+		iCol += (*pData - 'A') + 1;
+		++pData;
+	}
+
+	while (*pData && *pData >= '0' && *pData <= '9')
+	{
+		iRow *= ('9' - '0' + 1);
+		iRow += (*pData - '0') + 1;
+		++pData;
+	}
+}
+
+bool cHelpXlsx::SavePBData()
+{
+	int iRow = 0;
+	int iCol = 0;
+
+	
 
 
 	return true;

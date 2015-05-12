@@ -27,11 +27,17 @@ public:
 	void Release();
 
 	bool LoadXlsx(const char* cpFileName);
+	//填充行列数据
+	bool LoadColRowData();
 	bool SavePBData();
 	const char * GetXlsxDataBuffer(eXlsxData eDatatype);
+	void ParserColRowData(char* pData, int& iRow, int & iCol);
 private:
 	char *				m_apXlsxData[eXlsxDataNum];
-
+	//行数
+	int					m_iRow;
+	//列数
+	int					m_iCol;
 
 };
 

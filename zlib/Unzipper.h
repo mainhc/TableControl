@@ -23,7 +23,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#if defined(_WIN32) && defined(_WINDOWS)
+#if defined(_WIN32)
 #include<windows.h>
 #endif
 
