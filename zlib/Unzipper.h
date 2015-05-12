@@ -23,7 +23,9 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#if defined(_WIN32) && defined(_WINDOWS)
 #include<windows.h>
+#endif
 
 const UINT MAX_COMMENT = 255;
 

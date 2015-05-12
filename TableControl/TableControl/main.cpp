@@ -11,6 +11,7 @@
 #include "../../tinyxml2/tinyxml2.h"
 #include "../../HelpFunc.h"
 #include "../../zlib/zlib.h"
+#include "../../protobuf/testtable.pb.h"
 
 
 int main(int argc, const char * argv[]) {
