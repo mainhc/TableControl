@@ -53,6 +53,8 @@ private:
 	
 };
 
+
+
 class cTableMgr : public cSingleton<cTableMgr>
 {
 public:
@@ -60,7 +62,7 @@ public:
 	}
 	virtual ~cTableMgr(){
 	}
-	cTableMgr* Get(){
+	static cTableMgr* Get(){
 		return &GetSingleton();
 	}
 	cTestTable& GetTestTable()
@@ -71,6 +73,10 @@ private:
 	cTestTable			m_kTestTable;
 	
 };
+
+
+
+
 
 
 

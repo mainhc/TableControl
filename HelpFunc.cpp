@@ -46,3 +46,41 @@ bool LoadFileToMemory(FILE* pfile,char* pMem, int iSize)
     return true;
 }
 
+#if defined(_WIN32)
+#include <windows.h>
+#include <wchar.h>
+
+void UTF_8ToGB2312(std::string & pOut, const char* p)
+{
+	char acChar[2];
+	char acWChar[2];
+	while (*p)
+	{
+		if (*p > 0)
+		{
+			pOut += *p;
+			p++;
+		}
+		else
+		{
+			if (p[1] == 0xff)
+			{
+				if (((p[0] >= 0x21) && (p[0] < 0x5a)) || ((p[0] >= 0x10) && (p[0] < 0x19)) )
+				{
+					char buffer[1024] = { 0 };
+					sprintf_s(buffer, sizeof(buffer), "存在全角字符 %x", p[0]);
+					printf(buffer);
+				}
+			}
+			acWChar[1] = ((p[0] & 0x0f) << 4) + ((p[1] >> 2) & 0x0f);
+			acWChar[0] = ((p[1] & 0x03) << 6) + (p[2] & 0x3f);
+			WideCharToMultiByte(CP_ACP, NULL, (LPCWSTR)acWChar, 1, acChar, sizeof(acChar), NULL, NULL);
+			pOut += acChar[0];
+			pOut += acChar[1];
+			p += 3;
+		}
+	}
+	
+}
+#endif
+

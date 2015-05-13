@@ -32,6 +32,8 @@ public:
 	bool SavePBData();
 	const char * GetXlsxDataBuffer(eXlsxData eDatatype);
 	void ParserColRowData(char* pData, int& iRow, int & iCol);
+
+
 private:
 	char *				m_apXlsxData[eXlsxDataNum];
 	//ÐÐÊý

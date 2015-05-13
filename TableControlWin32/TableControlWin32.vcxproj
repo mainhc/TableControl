@@ -104,6 +104,7 @@
   <ItemGroup>
     <ClCompile Include="..\HelpFunc.cpp" />
     <ClCompile Include="..\HelpXlsx.cpp" />
+    <ClCompile Include="..\protobuf\protobufhead.cpp" />
     <ClCompile Include="..\protobuf\testtable.pb.cc" />
     <ClCompile Include="..\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\zlib\FILEMISC.CPP" />

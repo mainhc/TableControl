@@ -3,7 +3,7 @@
 #define Hc_Singletion_h
 
 #define INI_SINGLETION(type) \
-	template <> type * cSingleton< type >::m_spSingletion = 0; \
+	template <> type * cSingleton< type >::m_spSingleton = 0; \
 	type the##type
 
 template<typename T>

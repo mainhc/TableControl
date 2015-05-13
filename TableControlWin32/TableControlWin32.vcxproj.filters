@@ -104,6 +104,9 @@
     <ClCompile Include="..\HelpXlsx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\protobuf\protobufhead.cpp">
+      <Filter>protobuf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\protobuf\testtable.proto">

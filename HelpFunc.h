@@ -14,5 +14,9 @@ int GetFileSize(FILE * pfile);
 
 bool LoadFileToMemory(FILE* pfile,char* pMem, int iSize);
 
+#if defined(_WIN32)
+void UTF_8ToGB2312(std::string & pOut, const char* p);
+#endif
+
 
 #endif
