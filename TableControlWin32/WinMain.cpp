@@ -15,6 +15,11 @@
 #pragma comment(lib,"libprotobuf.lib")
 #pragma comment(lib,"libprotoc.lib")
 
+#if defined(_WIN32)
+#include"../vld/include/vld.h"
+#pragma comment(lib,"vld.lib")
+#endif
+
 
 const std::string cstrComment1 = "xl/sharedStrings.xml";
 

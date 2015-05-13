@@ -25,6 +25,9 @@
     <Filter Include="google">
       <UniqueIdentifier>{122200e1-4213-4f41-bfe4-23a3967a9a06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hcbase">
+      <UniqueIdentifier>{524148c5-19cd-4fe9-8405-30c68c8e1000}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\zlib\zconf.h">
@@ -71,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="..\protobuf\protobufhead.h">
       <Filter>protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HcBase\HcSingleton.h">
+      <Filter>Hcbase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

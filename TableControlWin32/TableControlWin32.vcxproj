@@ -42,7 +42,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>F:\TableControl\zlib;E:\TableControl\google;$(LibraryPath)</LibraryPath>
+    <LibraryPath>F:\TableControl\zlib;E:\TableControl\google;E:\TableControl\vld\lib\Win32;$(LibraryPath)</LibraryPath>
     <OutDir>bin</OutDir>
     <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
@@ -84,6 +84,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\HcBase\HcSingleton.h" />
     <ClInclude Include="..\HelpFunc.h" />
     <ClInclude Include="..\HelpXlsx.h" />
     <ClInclude Include="..\protobuf\protobufhead.h" />
