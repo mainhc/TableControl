@@ -24,22 +24,28 @@ class cHelpXlsx
 public:
 	cHelpXlsx();
 	~cHelpXlsx();
-	void Release();
-
-	bool LoadXlsx(const char* cpFileName);
-	//Ìî³äĞĞÁĞÊı¾İ
-	bool LoadColRowData();
-	bool SavePBData();
+	void Release();   
+	
+	//ÃƒÃ“â‰¥â€°â€“â€“Â¡â€“Â ËÃ¦â€º
+    bool LoadColRowData();
+	
 	bool ReadFileData();
 	const char * GetXlsxDataBuffer(eXlsxData eDatatype);
 	void ParserColRowData(char* pData, int& iRow, int & iCol);
+public:
+    
+     #if defined(_WIN32)
+    bool LoadXlsx(const char* cpFileName);
+    bool SavePBData();
+    #endif
+    
 
 
 private:
 	char *				m_apXlsxData[eXlsxDataNum];
-	//ĞĞÊı
+	//â€“â€“Â Ë
 	int					m_iRow;
-	//ÁĞÊı
+	//Â¡â€“Â Ë
 	int					m_iCol;
 
 };
