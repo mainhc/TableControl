@@ -109,24 +109,23 @@ int main()
 	cHelpXlsx ioXlsx;
 	ioXlsx.LoadXlsx("../resources/testtable.xlsx");
 	ioXlsx.SavePBData();
+	ioXlsx.ReadFileData();
 
-	//
-	CUnzipper unZib;
+	////
+	//CUnzipper unZib;
+	//unZib.OpenZip("../resources/testtable.xlsx");
+	//printf("testtable.xlsx has file count %d ", unZib.GetFileCount());
 
-	unZib.OpenZip("../resources/testtable.xlsx");
-
-	printf("testtable.xlsx has file count %d ", unZib.GetFileCount());
-
-	if (unZib.GotoFile(cstrComment1.c_str()))
-	{		
-		UZ_FileInfo kTempInfo;	
-		unZib.GetFileInfo(kTempInfo);
-		char * pBuffer = new char[kTempInfo.dwUncompressedSize+1];
-		memset(pBuffer, 0, kTempInfo.dwUncompressedSize + 1);
-		unZib.UnzipToBuffer(pBuffer, kTempInfo.dwUncompressedSize + 1);
-		printf("xl/sharedStrings.xml is %s  ", pBuffer);
-		printf("testtable.xlsx has file success ! ");
-	}
+	//if (unZib.GotoFile(cstrComment1.c_str()))
+	//{		
+	//	UZ_FileInfo kTempInfo;	
+	//	unZib.GetFileInfo(kTempInfo);
+	//	char * pBuffer = new char[kTempInfo.dwUncompressedSize+1];
+	//	memset(pBuffer, 0, kTempInfo.dwUncompressedSize + 1);
+	//	unZib.UnzipToBuffer(pBuffer, kTempInfo.dwUncompressedSize + 1);
+	//	printf("xl/sharedStrings.xml is %s  ", pBuffer);
+	//	printf("testtable.xlsx has file success ! ");
+	//}
 	system("pause");
 	return 0;
 }

@@ -30,6 +30,7 @@ public:
 	//填充行列数据
 	bool LoadColRowData();
 	bool SavePBData();
+	bool ReadFileData();
 	const char * GetXlsxDataBuffer(eXlsxData eDatatype);
 	void ParserColRowData(char* pData, int& iRow, int & iCol);
 

@@ -107,10 +107,10 @@ void cHelpXlsx::ParserColRowData(char* pData, int& iRow, int & iCol)
 		++pData;
 	}
 
-	while (*pData && *pData >= '0' && *pData <= '9')
+	while (*pData && *pData >= '1' && *pData <= '9')
 	{
-		iRow *= ('9' - '0' + 1);
-		iRow += (*pData - '0') + 1;
+		iRow *= ('9' - '1' + 1);
+		iRow += (*pData - '1') + 1;
 		++pData;
 	}
 }
@@ -174,7 +174,19 @@ bool cHelpXlsx::SavePBData()
 		}
 		for (int jLoop = 0; jLoop < m_iCol; jLoop++)
 		{
-			std::string tStr = pCol->Attribute("t");
+			std::string tStr = "";
+			const char* cpTemp = pCol->Attribute("t");
+			if (cpTemp != NULL)
+			{
+				tStr = cpTemp;
+			}	
+			std::string strRowCol = "";
+			cpTemp = pCol->Attribute("r");
+			if (cpTemp != NULL)
+			{
+				strRowCol = cpTemp;
+				printf("SavePBData  ++++  %s \n ", strRowCol.c_str());
+			}
 			std::string strValue = pCol->FirstChildElement("v")->GetText();			
 			if (tStr == "s")
 			{				
@@ -210,5 +222,78 @@ bool cHelpXlsx::SavePBData()
 		kTestTable.AddElemTable(iLoop, pKTestTemp);
 		pRow = pRow->NextSiblingElement();
 	}
+	int iBufferSize = 2* sizeof(int);
+	for (int iLoop = 0; iLoop < kTestTable.GetTableRow(); ++iLoop)
+	{
+		iBufferSize += sizeof(int);
+
+		TABLE::Test* ptemp = kTestTable.GetTableElem(iLoop);
+		iBufferSize += ptemp->ByteSize();
+	}
+	char* pTempChar = new char[iBufferSize];
+	char* pBegin = pTempChar;
+	memset(pTempChar, 0, iBufferSize);
+	memcpy(pTempChar, &iBufferSize, sizeof(iBufferSize));
+	pTempChar += sizeof(iBufferSize);
+	int iRowNum = kTestTable.GetTableRow();
+	memcpy(pTempChar, &iRowNum, sizeof(int));
+	pTempChar += sizeof(int);
+	for (int iLoop = 0; iLoop < kTestTable.GetTableRow(); ++iLoop)
+	{
+		TABLE::Test* ptemp = kTestTable.GetTableElem(iLoop);
+		int pbsize = ptemp->ByteSize();
+		memcpy(pTempChar, &pbsize, sizeof(int));
+		pTempChar += sizeof(int);
+		ptemp->SerializeToArray(pTempChar,pbsize);		
+		pTempChar += pbsize;
+	}
+	FILE * pfile = fopen("wwww.txt", "wb+");
+	if (pfile != NULL)
+	{
+		fwrite(pBegin, 1, iBufferSize, pfile);
+		fclose(pfile);
+	}
+	if (pBegin != NULL)
+	{
+		int iSize = *((int*)pBegin);
+		delete[] pBegin;
+		pBegin = NULL;
+	}
 	return true;
+}
+
+bool cHelpXlsx::ReadFileData()
+{
+	int iBufferSize = 0;
+	int iPbNum = 0;
+	char * pbuffer = NULL;
+	FILE * pfile = fopen("wwww.txt", "r");
+	if (pfile != NULL)
+	{
+		
+
+		int iReadSize = fread(&iBufferSize, 1, sizeof(int), pfile);
+		iReadSize = fread(&iPbNum, 1, sizeof(int), pfile);
+		int pbBuferSize = iBufferSize - 2 * sizeof(int);
+		pbuffer = new char[pbBuferSize];
+		memset(pbuffer, 0, pbBuferSize);
+		iReadSize = fread(pbuffer, 1, pbBuferSize, pfile);
+		pbuffer += iReadSize;
+		iReadSize = fread(pbuffer, 1, pbBuferSize, pfile);
+		fclose(pfile);
+	}
+	for (int iLoop = 0; iLoop < iPbNum; ++iLoop)
+	{
+		int ipbsize = 0;
+		ipbsize = *(int *)pbuffer;
+		pbuffer += sizeof(int);
+		TABLE::Test* pKTestTemp = new TABLE::Test();
+		pKTestTemp->ParseFromArray(pbuffer, ipbsize);
+		pbuffer += ipbsize;
+		printf("iLoop   %d  name %s email %s  /n ", iLoop, pKTestTemp->name().c_str(), pKTestTemp->email().c_str());
+	}
+	
+
+	return true;
+
 }

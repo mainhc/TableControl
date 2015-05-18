@@ -48,6 +48,11 @@ public:
 		}
 		return NULL;
 	}
+
+	int GetTableRow()
+	{
+		return m_TestTableMap.size();
+	}
 private:
 	std::map<int, TABLE::Test*> m_TestTableMap;
 	
