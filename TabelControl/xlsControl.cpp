@@ -277,6 +277,7 @@ bool cXlsControl::ReadXlsxData()
 bool cXlsControl::DataToJsonFile()
 {
 	std::string strFileName = GetJsonFileName();
+
 	FILE * pfile = fopen(strFileName.c_str(), "w");
 	if (pfile != nullptr)
 	{

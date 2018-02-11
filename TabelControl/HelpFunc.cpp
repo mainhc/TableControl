@@ -7,6 +7,8 @@
 //
 
 #include "HelpFunc.h"
+#include <windows.h>
+#include <wchar.h>
 
 
 int GetFileSize(FILE * pfile)
@@ -46,9 +48,52 @@ bool LoadFileToMemory(FILE* pfile,char* pMem, int iSize)
     return true;
 }
 
-#if defined(_WIN32)
-#include <windows.h>
-#include <wchar.h>
+int FilePathAllFile(const char * pathfile, std::vector<std::string>& resFileName)
+{
+	if (pathfile == nullptr)
+		return -1;
+	char szFind[512] = { 0 };
+	WIN32_FIND_DATA FindFileData;
+	strcpy(szFind, pathfile);
+	strcat(szFind, "\\*.*");
+	HANDLE hFind = ::FindFirstFile(szFind, &FindFileData);
+	if (INVALID_HANDLE_VALUE == hFind)
+		return -1;
+	int filenum = 0;
+
+	do {
+		if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			if (strcmp(FindFileData.cFileName, ".") != 0 && strcmp(FindFileData.cFileName, "..") != 0)
+			{
+				std::string tempstr = FindFileData.cFileName;
+				//printf("file name ++  %s", tempstr.c_str());
+				resFileName.push_back(tempstr);
+				
+				char szFind2[512] = { 0 };
+				strcpy(szFind2, pathfile);
+				strcat(szFind2, "\\");
+				strcat(szFind2, FindFileData.cFileName);
+				FilePathAllFile(szFind2, resFileName);
+			}
+		}
+		else
+		{
+			filenum++;
+			std::string tempstr = FindFileData.cFileName;
+			resFileName.push_back(tempstr);
+			//printf("file name ++  %s", tempstr.c_str());
+		}
+
+	} while (::FindNextFile(hFind, &FindFileData));
+
+	::FindClose(hFind);
+	return filenum;
+
+}
+
+
+
 
 void UTF_8ToGB2312(std::string & pOut, const char* p)
 {
@@ -82,5 +127,5 @@ void UTF_8ToGB2312(std::string & pOut, const char* p)
 	}
 	
 }
-#endif
+
 

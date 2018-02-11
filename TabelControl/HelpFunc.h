@@ -9,14 +9,17 @@
 #ifndef TableControl_HelpFunc_h
 #define TableControl_HelpFunc_h
 #include <iostream>
+#include <vector>
 
 int GetFileSize(FILE * pfile);
 
 bool LoadFileToMemory(FILE* pfile,char* pMem, int iSize);
 
-#if defined(_WIN32)
 void UTF_8ToGB2312(std::string & pOut, const char* p);
-#endif
+
+int FilePathAllFile(const char * pathfile, std::vector<std::string>& resFileName);
+
+
 
 
 #endif
