@@ -36,6 +36,12 @@ void cXlsControl::Release()
 			m_apXlsxData[iLoop] = NULL;
 		}
 	}
+	m_iRow = 0;
+	m_iCol = 0;
+
+	m_akTableHead.clear();
+	m_akTableContext.clear();
+	m_akTableId.clear();
 }
 
 //填充行列数据
