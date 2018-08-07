@@ -2,10 +2,10 @@
 	
 	"10001":
 	{
-	"ID":"10001","objview":"10001","pathId":"path"
+	"ID":"10001","objview":"10001","objtype":"1","currentHp":"100","maxHp":"100","pathId":"path"
 	},
 	"10002":
 	{
-	"ID":"10002","objview":"10002","pathId":"path"
+	"ID":"10002","objview":"10002","objtype":"2","currentHp":"100","maxHp":"100","pathId":"path"
 	}
 }
